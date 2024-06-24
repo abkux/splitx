@@ -5,6 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import mainRouter from "./routes/index.js";
 
 dotenv.config();
 const corsOptions = {
@@ -30,9 +31,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cookieParser());
 
 
-app.get('/', async(req,res) => {
-    res.status(200).json({response: 'hello from splitx backend.'})
-})
+app.use('/', mainRouter)
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening On Port: ${process.env.PORT}`);
